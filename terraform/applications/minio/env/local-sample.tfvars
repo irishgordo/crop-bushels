@@ -1,0 +1,9 @@
+GLOBAL_NAMESPACE= "default"
+MINIO_VM_PW="ubuntupw"
+MINIO_DESIRED_CPU=2
+MINIO_DESIRED_MEM="4Gi"
+KUBECONFIG_LOCATION="/your/path/to/kubeconfig/for/harvester/cluster.yaml"
+SSH_KEY="yourpublicsshkey"
+MINIO_VOLUMES=""
+MINIO_DISK_SIZE=""
+MINIO_NAME="minio-box"

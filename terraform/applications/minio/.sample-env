@@ -1,0 +1,9 @@
+export TF_VAR_SSH_KEY=""
+export TF_VAR_MINIO_VM_PW=""
+export TF_VAR_GLOBAL_NAMESPACE=""
+# needs to be full path...
+export TF_VAR_KUBECONFIG_LOCATION=""
+export TF_VAR_MINIO_DESIRED_CPU=""
+export TF_VAR_MINIO_DESIRED_MEM=""
+export TF_VAR_MINIO_DISK_SIZE=""
+export TF_VAR_MINIO_NAME=""
