@@ -1,7 +1,8 @@
-variable "KUBECONFIG_LOCATION" {
-    description = "the full file path location of the kubeconfig"
-    type = string
-}
+# switching to convention over configuration, dropping local.yaml at the root of the project 'should' suffice 
+# variable "KUBECONFIG_LOCATION" {
+#     description = "the full file path location of the kubeconfig"
+#     type = string
+# }
 
 variable "SSH_KEY" {
   description = "your public ssh key"
@@ -11,7 +12,7 @@ variable "SSH_KEY" {
 variable "MINIO_VM_PW" {
   description = "vm password for minio"
   type = string
-  sensitive = true
+  sensitive = false
   default = "ubuntupw"
 }
 
@@ -55,7 +56,7 @@ variable "MINIO_ROOT_PASSWORD" {
   description = "minio root user password for console"
   type = string
   default = "minioadmin"
-  sensitive = true
+  sensitive = false
 }
 
 variable "MINIO_CONSOLE_ADDRESS" {

@@ -1,14 +1,9 @@
 module "network" {
-    source = "../../modules/network"
+  source = "../../modules/network"
 }
 
-resource "harvester_image" "ubuntu2204-jammy" {
-  name      = "ubuntu-2204-jammy"
-  namespace = "default"
-  storage_class_name = "harvester-longhorn"
-  display_name = "jammy-server-cloudimg-amd64-disk-kvm.img"
-  source_type  = "download"
-  url          = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64-disk-kvm.img"
+module "basicimages" {
+  source = "../../modules/basicimages"
 }
 
 resource "harvester_ssh_key" "minio-ssh-key" {
@@ -175,7 +170,7 @@ resource "harvester_virtualmachine" "minio-vm" {
     bus        = "virtio"
     boot_order = 1
 
-    image       = harvester_image.ubuntu2204-jammy.id
+    image       = module.basicimages.ubuntu2204.id
     auto_delete = true
   }
 
