@@ -8,6 +8,10 @@ output "information_next_steps" {
     Also!
     The VM's SSH User is: ubuntu
     With the password of: ${var.MINIO_VM_PW}
+    Next-Steps:
+    - building a bucket
+    - setting a region
+    - building access key & secret
   EOF
 # TODO: impl, coalesce logic for 'truthy' ness of null/empty string
 #   precondition {

@@ -8,7 +8,7 @@ resource "harvester_network" "mgmt-vlan1" {
   route_dhcp_server_ip = ""
 
   cluster_network_name = "mgmt"
-  lifecycle {
-    prevent_destroy = true
-  }
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }

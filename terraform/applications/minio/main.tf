@@ -1,9 +1,22 @@
-module "network" {
-  source = "../../modules/network"
+resource "harvester_network" "mgmt-vlan1-minio" {
+  name      = "mgmt-vlan1-minio"
+  namespace = "default"
+
+  vlan_id = 1
+
+  route_mode           = "auto"
+  route_dhcp_server_ip = ""
+
+  cluster_network_name = "mgmt"
 }
 
-module "basicimages" {
-  source = "../../modules/basicimages"
+resource "harvester_image" "ubuntu2204-jammy-minio" {
+  name      = "ubuntu-2204-jammy-minio"
+  namespace = "default"
+  storage_class_name = "harvester-longhorn"
+  display_name = "jammy-server-cloudimg-amd64-disk-kvm-minio.img"
+  source_type  = "download"
+  url          = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64-disk-kvm.img"
 }
 
 resource "harvester_ssh_key" "minio-ssh-key" {
@@ -160,7 +173,7 @@ resource "harvester_virtualmachine" "minio-vm" {
     wait_for_lease = true
     model = "virtio"
     type = "bridge"
-    network_name = module.network.basic_vlan1_vm_network
+    network_name = harvester_network.mgmt-vlan1-minio.id
   }
 
   disk {
@@ -170,7 +183,7 @@ resource "harvester_virtualmachine" "minio-vm" {
     bus        = "virtio"
     boot_order = 1
 
-    image       = module.basicimages.ubuntu2204.id
+    image       = harvester_image.ubuntu2204-jammy-minio.id
     auto_delete = true
   }
 
